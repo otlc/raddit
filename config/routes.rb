@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :links
+  resources :links do
+    member do
+      # Write to screen (put) "Like", then link it to the links controller and the upvote action
+      put "like",    to: "links#upvote"
+      # Write to screen (put) "Dislike", then link it to the links controller and the downvote action
+      put "dislike", to: "links#downvote"
+    end
+  end
+
   root to: "links#index"
 
   # The priority is based upon order of creation: first created -> highest priority.

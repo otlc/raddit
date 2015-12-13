@@ -63,6 +63,20 @@ class LinksController < ApplicationController
     end
   end
 
+  def upvote
+    @link = Link.find(params[:id])
+    @link.upvote_by current_user
+    # This upvote action will be displayed on both the index and show pages. 'redirect_to :back' will take user back to same page they clicked the Like button
+    redirect_to :back
+  end
+
+  def downvote
+    @link = Link.find(params[:id])
+    @link.downvote_by current_user
+    # This downvote action will be displayed on both the index and show pages. 'redirect_to :back' will take user back to same page they clicked the Dislike button
+    redirect_to :back
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_link
