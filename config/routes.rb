@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :comments
   devise_for :users
   resources :links do
     member do
@@ -7,6 +8,7 @@ Rails.application.routes.draw do
       # Write to screen (put) "Dislike", then link it to the links controller and the downvote action
       put "dislike", to: "links#downvote"
     end
+    resources :comments
   end
 
   root to: "links#index"
